@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="utf-8">
@@ -107,6 +107,36 @@
         </fieldset>        
         
         <hr />
+
+          <fieldset>
+              <h2>GET /chatMessages</h2>
+              <input type="button" class="btn" value="Get ChatMessages" data-bind="click: ui.retrieveMsgs" />
+              <div data-bind="visible: ui.msgsResponse() || ui.msgsLoading()">
+                  <h3>Response:</h3>
+                  <a class="btn btn-inverse close" data-bind="click: ui.closeMsgs">Close</a>
+                  <pre class="prettyprint" data-bind="formattedJson: ui.msgsResponse, css: { 'loading': ui.msgsLoading }"></pre>
+              </div>
+          </fieldset>
+
+          <hr />
+
+
+          <fieldset>
+              <h2>POST /chatMessages/<input type="text" placeholder="id" data-bind="value: ui.deletePictureId" class="idParameter" /></h2>
+              <form id="picturePostForm" class="vertical" action="/api/chatMessages" method="post" >
+                  <label for="AuthorID">AuthorID:</label>
+                  <input type="text" name="AuthorID" id="AuthorID" data-val="true" data-val-required="The AuthorID is required" />
+                  <span class="field-validation-valid help-inline error" data-valmsg-for="AuthorID" data-valmsg-replace="true"></span>
+
+                  <label for="Text">Text:</label>
+                  <textarea name="Text" cols="20" id="Text" data-val="true" data-val-required="The Text is required" rows="5"></textarea>
+                  <span class="field-validation-valid help-inline error" data-valmsg-for="Text" data-valmsg-replace="true"></span>
+
+                  <input class="btn btn-primary" type="submit" value="Post" />
+              </form>
+          </fieldset>
+
+          <hr />
 
         <fieldset>
           <h2>GET /tags</h2>

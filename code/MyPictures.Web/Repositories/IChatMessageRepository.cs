@@ -16,13 +16,17 @@
 
 namespace MyPictures.Web.Repositories
 {
-    public static class StorageAccountConfiguration
+    using System.Linq;
+    using MyPictures.Web.Models;
+    using System;
+
+    public interface IChatMessageRepository
     {
-        public const string StorageAccount = "WAZStorageAccount";
-        public const string BlobContainer = "mypictures";
-        public const string PicturesTable = "MyPicturesPictures";
-        public const string TagsTable = "MyPicturesTags";
-        public const string PictureTagTable = "MyPicturesPictureTag";
-        public const string ChatMessagesTable = "ChatMessages";
+        IQueryable<ChatMessage> GetAll();
+
+        ChatMessage Get(string msgId);
+
+        ChatMessage Save(ChatMessage msg);
+
     }
 }

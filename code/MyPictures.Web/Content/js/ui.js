@@ -11,6 +11,10 @@ var ui = {
     tagsLoading: ko.observable(false),
     tagsResponse: ko.observable(),
 
+    msgsLoading: ko.observable(false),
+    msgsResponse: ko.observable(),
+
+
     tag: ko.observable(''),
     tagPicturesLoading: ko.observable(false),
     tagPicturesResponse: ko.observable(),
@@ -81,6 +85,18 @@ var ui = {
         });
     },
 
+    retrieveMsgs: function () {
+        var uri = '/api/chatMessages';
+        ui.msgsLoading(true);
+        $.getJSON(uri, function (m) {
+            ui.msgsResponse(m);
+            ui.msgsLoading(false);
+        }).error(function (jqXHR, textStatus, errorThrown) {
+            ui.msgsResponse(jqXHR.responseText);
+            ui.msgsLoading(false);
+        });
+    },
+
     retrieveTagPictures: function () {
         var tag = ui.tag();
         if (!tag) return;
@@ -109,6 +125,11 @@ var ui = {
     closeTags: function () {
         ui.tagsLoading(false);
         ui.tagsResponse('');
+    },
+
+    closeMsgs: function () {
+        ui.msgsLoading(false);
+        ui.msgsResponse('');
     },
 
     closeTagPictures: function () {

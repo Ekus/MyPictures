@@ -50,6 +50,8 @@ namespace MyPictures.Web.Repositories
             context.CreateIfNotExist<Tag>(StorageAccountConfiguration.TagsTable);
             context.CreateIfNotExist<PictureTag>(StorageAccountConfiguration.PictureTagTable);
 
+            context.CreateIfNotExist<ChatMessage>(StorageAccountConfiguration.ChatMessagesTable);
+
             return context;
         }
 
